@@ -1,0 +1,6 @@
+
+*.gz
+
+.idea/
+
+project/encryption_system/__pycache__/
