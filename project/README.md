@@ -5,6 +5,6 @@
 
 Pour lancer le programme, lancez `main.py`.
 
-Le programme ne possède pas d'interface graphique 
+Le programme ne possède pas d'interface graphique.
 
 Il gère majuscule/minuscule d'un alphabet latin standard.

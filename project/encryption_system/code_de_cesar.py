@@ -1,84 +1,83 @@
-def encrypt(text, decal):
-    """
-    Chiffre un message
-    :param text: Message à chiffrer
-    :param decal: Décalage à effectuer
-    :return: Message chiffré
-    """
-    if decal < 0:
-        print("Il n'est pas possible de chiffrer avec un chiffre négatif")
-        return
+class CodeDeCesar:
+    def encrypt(self, text, decal):
+        """
+        Chiffre un message
+        :param text: Message à chiffrer
+        :param decal: Décalage à effectuer
+        :return: Message chiffré
+        """
+        if decal < 0:
+            print("Il n'est pas possible de chiffrer avec un chiffre négatif")
+            return
 
-    print("Texte entrée : " + text)
-    print("Décalage : " + str(decal))
-    print("Résultat : " + crypt(text, decal))
+        print("Texte entrée : " + text)
+        print("Décalage : " + str(decal))
+        print("Résultat : " + self.__crypt(text, decal))
 
+    def decrypt(self, text, decal):
+        """
+        Déchiffre un message
+        :param text: Message à déchiffrer
+        :param decal: Décalage
+        :return: Message déchiffré
+        """
+        if decal < 0:
+            print("Il n'est pas possible de chiffrer avec un chiffre négatif")
+            return
 
-def decrypt(text, decal):
-    """
-    Déchiffre un message
-    :param text: Message à déchiffrer
-    :param decal: Décalage
-    :return: Message déchiffré
-    """
-    if decal < 0:
-        print("Il n'est pas possible de chiffrer avec un chiffre négatif")
-        return
+        decal_de = 26 - decal  # Inverse le décalage pour déchiffrer le message
 
-    decal_de = 26 - decal  # Inverse le décalage pour déchiffrer le message
+        print("Texte entrée : " + text)
+        print("Décalage : " + str(decal))
+        print("Résultat : " + self.__crypt(text, decal_de))
 
-    print("Texte entrée : " + text)
-    print("Décalage : " + str(decal))
-    print("Résultat : " + crypt(text, decal_de))
+    def __crypt(self, text, decal):
+        """
+        Permet de retourner le résultat du chiffrement
+        :param text: Text original
+        :param decal: Décalage
+        :return: Chiffrement
+        """
+        result = ""
 
+        dico_down = self.__get_dico(decal, "down")  # Génère le dictionnaire pour les minuscules
+        dico_up = self.__get_dico(decal, "up")  # Génère le dictionnaire pour les majuscules
 
-def crypt(text, decal):
-    """
-    Permet de retourner le résultat du chiffrement
-    :param text: Text original
-    :param decal: Décalage
-    :return: Chiffrement
-    """
-    result = ""
+        for i in range(len(text)):  # Pour chaque caractère
+            if text[i].islower():  # S'il est minuscule
+                result += dico_down.get(text[i], " ")  # Ajout du caractère chiffrer ; si le caractère est inconnu,
+                # il sera remplacé par un espace
+            else:  # S'il est minuscule
+                result += dico_up.get(text[i], " ")  # Ajout du caractère chiffrer ; si le caractère est inconnu,
+                # il sera remplacé par un espace
 
-    dico_down = get_dico(decal, "down")  # Génère le dictionnaire pour les minuscules
-    dico_up = get_dico(decal, "up")  # Génère le dictionnaire pour les majuscules
+        return result
 
-    for i in range(len(text)):  # Pour chaque caractère
-        if text[i].islower():  # S'il est minuscule
-            result += dico_down.get(text[i], " ")  # Ajout du caractère chiffrer ; si le caractère est inconnu,
-            # il sera remplacé par un espace
-        else:  # S'il est minuscule
-            result += dico_up.get(text[i], " ")  # Ajout du caractère chiffrer ; si le caractère est inconnu,
-            # il sera remplacé par un espace
+    @staticmethod
+    def __get_dico(decal, type):
+        """
+        Permet de récupérer le dictionnaire chiffrer
+        :param decal: Décalage à effectuer
+        :param type: Si le dictionnaire doit être majuscule (up) ou minuscule (down)
+        :return: Le dictionnaire chiffré
+        """
+        letters_down = "abcdefghijklmnopqrstuvwxyz"  # Alphabet latin minuscule
+        letters_up = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # Alphabet latin majuscule
+        dico = {}  # Initialise le dictionnaire
+        lenm = len(letters_down)  # Récupère la longueur de l'alphabet
+        decal = int(decal)  # Transforme le décalage en entier si ce n'est le cas
 
-    return result
-
-
-def get_dico(decal, type):
-    """
-    Permet de récupérer le dictionnaire chiffrer
-    :param decal: Décalage à effectuer
-    :param type: Si le dictionnaire doit être majuscule (up) ou minuscule (down)
-    :return: Le dictionnaire chiffré
-    """
-    letters_down = "abcdefghijklmnopqrstuvwxyz"  # Alphabet latin minuscule
-    letters_up = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # Alphabet latin majuscule
-    dico = {}  # Initialise le dictionnaire
-    lenm = len(letters_down)  # Récupère la longueur de l'alphabet
-    decal = int(decal)  # Transforme le décalage en entier si ce n'est le cas
-
-    for i in range(lenm):  # Pour chaque lettre dans l'alphabet
-        if type == "up":  # Si le type est up
-            if i + decal >= lenm:  # Si la somme de i + decal dépasse la longueur de l'alphabet, alors on recompte à
-                # partir de 0
-                dico[letters_up[i]] = letters_up[i + decal - 26]  # Ajout de la lettre dans le dictionnaire
-            else:
-                dico[letters_up[i]] = letters_up[i + decal]  # Ajout de la lettre dans le dictionnaire
-        elif type == "down":  # Si le type est down
-            if i + decal >= lenm: # Si la somme de i + decal dépasse la longueur de l'alphabet, alors on recompte à
-                # partir de 0
-                dico[letters_down[i]] = letters_down[i + decal - 26]  # Ajout de la lettre dans le dictionnaire
-            else:
-                dico[letters_down[i]] = letters_down[i + decal]  # Ajout de la lettre dans le dictionnaire
-    return dico
+        for i in range(lenm):  # Pour chaque lettre dans l'alphabet
+            if type == "up":  # Si le type est up
+                if i + decal >= lenm:  # Si la somme de i + decal dépasse la longueur de l'alphabet, alors on recompte à
+                    # partir de 0
+                    dico[letters_up[i]] = letters_up[i + decal - 26]  # Ajout de la lettre dans le dictionnaire
+                else:
+                    dico[letters_up[i]] = letters_up[i + decal]  # Ajout de la lettre dans le dictionnaire
+            elif type == "down":  # Si le type est down
+                if i + decal >= lenm:  # Si la somme de i + decal dépasse la longueur de l'alphabet, alors on recompte à
+                    # partir de 0
+                    dico[letters_down[i]] = letters_down[i + decal - 26]  # Ajout de la lettre dans le dictionnaire
+                else:
+                    dico[letters_down[i]] = letters_down[i + decal]  # Ajout de la lettre dans le dictionnaire
+        return dico

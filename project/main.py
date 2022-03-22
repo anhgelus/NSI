@@ -1,5 +1,4 @@
-from encryption_system.code_de_cesar import encrypt as cdcencrypt
-from encryption_system.code_de_cesar import decrypt as cdcdecrypt
+from encryption_system.code_de_cesar import CodeDeCesar
 
 print("PROJECT WILLIAM HERGES - NSI 2021-2022")
 
@@ -18,6 +17,8 @@ def main():
     }
 
     enable = True
+
+    cesar = CodeDeCesar()
 
     # Se répète jusqu'à la désactivation manuelle par la fonction 0 (Annuler)
     while enable:
@@ -60,13 +61,13 @@ def main():
                             to_crypt = str(input("Phrase à " + is_encrypt_decrypt_valid + " avec " + is_valid + " "))
                             pass_code = int(input("Décalage "))
                             # Appelle la fonction code de césar
-                            cdcencrypt(to_crypt, pass_code)
+                            cesar.encrypt(to_crypt, pass_code)
                         elif is_encrypt_decrypt_valid == "déchiffrer":
                             # Demande la phrase et le code pour déchiffrer la phrase
                             to_crypt = str(input("Phrase à " + is_encrypt_decrypt_valid + " avec " + is_valid + " "))
                             pass_code = int(input("Décalage "))
                             # Appelle la fonction code de césar
-                            cdcdecrypt(to_crypt, pass_code)
+                            cesar.decrypt(to_crypt, pass_code)
 
                     # Quand la fonction 2 (ROT13) est appelée
                     elif type == 1:
@@ -75,12 +76,12 @@ def main():
                             # Demande la phrase et le code pour chiffrer la phrase
                             to_crypt = str(input("Phrase à " + is_encrypt_decrypt_valid + " avec " + is_valid + " "))
                             # Appelle la fonction code de césar avec comme code "13"
-                            cdcencrypt(to_crypt, 13)
+                            cesar.encrypt(to_crypt, 13)
                         elif is_encrypt_decrypt_valid == "déchiffrer":
                             # Demande la phrase et le code pour déchiffrer la phrase
                             to_crypt = str(input("Phrase à " + is_encrypt_decrypt_valid + " avec " + is_valid + " "))
                             # Appelle la fonction code de césar avec comme code "13"
-                            cdcdecrypt(to_crypt, 13)
+                            cesar.decrypt(to_crypt, 13)
 
             # Vérifie si l'input lors de la validation est valide
             elif is_validation_valid == "error":
