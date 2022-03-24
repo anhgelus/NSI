@@ -26,7 +26,7 @@ def main():
         #    "(4)")
 
         # Demande confirmation avant de lancer la méthode de children
-        validation = Question(Question.BOOL_QUESTION, type_chiffrage)
+        validation = Question(Question.BOOL_QUESTION, type_chiffrage).get_answer()
 
         if validation:
             # Quand la fonction 0 (Annuler) est appelée
