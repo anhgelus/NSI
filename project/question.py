@@ -6,7 +6,7 @@ class Question:
 
     def __init__(self, question_type: str, question: str, reponse=None):
         """
-        :param type: bool question ou complex question
+        :param question_type: bool question ou complex question
         :param question: Question posé
         :param reponse: Réponse possible (uniquement utilisable pour les questions complex et si non spécifié, retourne la valeur donné)
         """
@@ -33,49 +33,49 @@ class Question:
         :return: Résultat de la question
         """
         validation_type = {"y": 1, "n": 0}
-        answer = input("Confirmez-vous d'utiliser " + question + " ? (y/n) ")
-        validation = validation_type.get(answer, "error")
+        while True:
+            answer = input("Confirmez-vous d'utiliser " + question + " ? (y/n) ")
+            validation = validation_type.get(answer, "error")
 
-        if validation == "error":
-            self.__bool_question_generator(question)
-        elif validation == 1:
-            return True
-        elif validation == 0:
-            return False
+            if validation != "error":
+                if validation == 1:
+                    return True
+                else:
+                    return False
 
-    def __complex_question_generator(self, question: str, reponses=None):
+    @staticmethod
+    def __complex_question_generator(question: str, reponses=None):
         """
         Génère une question ouverte
         :param question: Question
         :param reponses: Réponses possibles
         :return: réponse de l'utilisateur
         """
-        answer = input(question)
+        while True:
+            answer = input(question)
 
-        if reponses is None:
-            validation = answer
-            return validation
+            if reponses is None:
+                validation = answer
+                return validation
 
-        type_reponse = type(reponses)
+            type_reponse = type(reponses)
 
-        if type_reponse is dict:
-            validation = reponses.get(answer, "error")
-            if validation == "error":
+            if type_reponse is dict:
+                validation = reponses.get(answer, "error")
+                if validation == "error":
+                    try:
+                        validation = reponses.get(int(answer), "error")
+                    except:
+                        validation = "error"
+            elif type_reponse is tuple:
+                validation = reponses.contain(answer)
+            elif type_reponse is list:
                 try:
-                    validation = reponses.get(int(answer), "error")
+                    validation = reponses[int(answer)]
                 except:
                     validation = "error"
-        elif type_reponse is tuple:
-            validation = reponses.contain(answer)
-        elif type_reponse is list:
-            try:
-                validation = reponses[int(answer)]
-            except:
+            else:
                 validation = "error"
-        else:
-            validation = "error"
 
-        if validation == "error":
-            self.__complex_question_generator(question, reponses)
-
-        return validation
+            if validation != "error":
+                return validation
