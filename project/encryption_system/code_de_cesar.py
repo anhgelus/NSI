@@ -1,5 +1,5 @@
 class CodeDeCesar:
-    def encrypt(self, text, decal):
+    def encrypt(self, text: str, decal: int):
         """
         Chiffre un message
         :param text: Message à chiffrer
@@ -14,7 +14,7 @@ class CodeDeCesar:
         print("Décalage : " + str(decal))
         print("Résultat : " + self.__crypt(text, decal))
 
-    def decrypt(self, text, decal):
+    def decrypt(self, text: str, decal: int):
         """
         Déchiffre un message
         :param text: Message à déchiffrer
@@ -31,7 +31,7 @@ class CodeDeCesar:
         print("Décalage : " + str(decal))
         print("Résultat : " + self.__crypt(text, decal_de))
 
-    def __crypt(self, text, decal):
+    def __crypt(self, text: str, decal: int):
         """
         Permet de retourner le résultat du chiffrement
         :param text: Text original
@@ -54,7 +54,7 @@ class CodeDeCesar:
         return result
 
     @staticmethod
-    def __get_dico(decal, type):
+    def __get_dico(decal: str, type: str):
         """
         Permet de récupérer le dictionnaire chiffrer
         :param decal: Décalage à effectuer

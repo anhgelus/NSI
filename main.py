@@ -126,8 +126,8 @@ def binaries_length(n):
     return len(str(dec2bin(n)))
 
 
-bin2dec(10110)
-print(dec2bin(22*4))
-print(binaries_length(2205))
-hexa2dec("")
-addbinary(0, 0)
+#bin2dec(10110)
+#print(dec2bin(22 * 4))
+#print(binaries_length(2205))
+#hexa2dec("")
+#addbinary(0, 0)
