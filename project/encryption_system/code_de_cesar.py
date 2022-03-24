@@ -10,9 +10,13 @@ class CodeDeCesar:
             print("Il n'est pas possible de chiffrer avec un chiffre négatif")
             return
 
+        crypted = self.__crypt(text, decal)
+
         print("Texte entrée : " + text)
         print("Décalage : " + str(decal))
-        print("Résultat : " + self.__crypt(text, decal))
+        print("Résultat : " + crypted)
+
+        return crypted
 
     def decrypt(self, text: str, decal: int):
         """
@@ -47,7 +51,7 @@ class CodeDeCesar:
             if text[i].islower():  # S'il est minuscule
                 result += dico_down.get(text[i], " ")  # Ajout du caractère chiffrer ; si le caractère est inconnu,
                 # il sera remplacé par un espace
-            else:  # S'il est minuscule
+            else:  # S'il n'est pas minuscule
                 result += dico_up.get(text[i], " ")  # Ajout du caractère chiffrer ; si le caractère est inconnu,
                 # il sera remplacé par un espace
 
