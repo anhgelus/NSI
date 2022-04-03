@@ -1,6 +1,7 @@
 # Import des systèmes de chiffrement
 from encryption_system.code_de_cesar import CodeDeCesar
 from encryption_system.chiffre_de_vigenere import ChiffreDeVigenere
+from encryption_system.carre_de_polybe import CarreDePolybe
 
 # Import de la classe qui génère les questions
 from question import Question
@@ -82,6 +83,23 @@ def main():
                 elif usage == usage_type.get(2):
                     # Déchiffre le message avec le chiffre de vigenere
                     vigenere.decrypt(crypt, passcode)
+
+            elif type_chiffrage == chiffrage_list[4]:
+                polybe = CarreDePolybe()
+
+                # Demande la phrase et le code pour chiffrer/déchiffer la phrase
+                crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
+                alphabet = input("Alphabet ")
+                if alphabet == "":
+                    alphabet = None
+
+                # Vérifie la méthode à utiliser (chiffrement (1) ou déchiffrement (2))
+                if usage == usage_type.get(1):
+                    # Chiffre le message avec le carré de polybe
+                    polybe.encrypt(crypt, alphabet)
+                elif usage == usage_type.get(2):
+                    # Déchiffre le message avec le carré de polybe
+                    polybe.decrypt(crypt, alphabet)
 
 
 # Appelle le programme

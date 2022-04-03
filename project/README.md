@@ -7,4 +7,4 @@ Pour lancer le programme, lancez `main.py`.
 
 Le programme ne possède pas d'interface graphique.
 
-Il gère majuscule/minuscule d'un alphabet latin standard.
+Il gère majuscule/minuscule d'un alphabet latin standard (sauf pour le Carré de Polybe à cause d'une limitation technique).
