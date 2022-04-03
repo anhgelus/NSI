@@ -26,7 +26,8 @@ class Question:
     def get_answer(self):
         return self.__answer
 
-    def __bool_question_generator(self, question: str):
+    @staticmethod
+    def __bool_question_generator(question: str):
         """
         Génère une question fermée (oui/non)
         :param question:
