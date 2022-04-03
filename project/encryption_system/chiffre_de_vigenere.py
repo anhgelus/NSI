@@ -1,4 +1,7 @@
 class ChiffreDeVigenere:
+    """
+    Ensemble de méthode pour utiliser le Chiffre de Vigenère
+    """
     def encrypt(self, text: str, passcode: str):
         """
         Chiffre un message avec une phrase

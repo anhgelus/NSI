@@ -1,4 +1,7 @@
 class CodeDeCesar:
+    """
+    Ensemble de méthode pour utiliser le Code de César
+    """
     def encrypt(self, text: str, decal: int):
         """
         Chiffre un message
