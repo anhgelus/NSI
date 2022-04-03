@@ -84,7 +84,8 @@ class CarreDePolybe:
         clef_valide = ""
         for ch in text:
             if ch not in clef_valide:
-                clef_valide += ch
+                if ch != "J":
+                    clef_valide += ch
         if len(clef_valide) < 25:
             for ch in self.__alpha:
                 if ch not in clef_valide:
