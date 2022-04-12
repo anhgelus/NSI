@@ -47,8 +47,8 @@ class CodeDeCesar:
         """
         result = ""
 
-        dico_down = self.__get_dico(decal, "down")  # Génère le dictionnaire pour les minuscules
-        dico_up = self.__get_dico(decal, "up")  # Génère le dictionnaire pour les majuscules
+        dico_down = self.__get_dico(str(decal), "down")  # Génère le dictionnaire pour les minuscules
+        dico_up = self.__get_dico(str(decal), "up")  # Génère le dictionnaire pour les majuscules
 
         for i in range(len(text)):  # Pour chaque caractère
             if text[i].islower():  # S'il est minuscule

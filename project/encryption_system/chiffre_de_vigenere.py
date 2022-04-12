@@ -80,16 +80,22 @@ class ChiffreDeVigenere:
         :param dico: Dictionnaire à utiliser pour le chiffrement
         :return: Charactère chiffré
         """
+        if char == " " or passcode_char == " ":
+            return " "
+
         char_value = dico.get(char, " ")
         pass_value = dico.get(passcode_char, " ")
+
+        if char_value == " " or pass_value == " ":
+            return "|"
 
         new_value = char_value + pass_value - 1  # calcule la nouvelle valeur du caractère
 
         if new_value > 26:  # Si la nouvelle valeur dépasse la taille de l'alphabet
             new_value = new_value - 26
 
-        return self.__invert_dico(dico).get(new_value, " ")  # Récupère le caractère chiffrer ; si le caractère est
-        # inconnu il sera remplacé par un espace
+        return self.__invert_dico(dico).get(new_value, "|")  # Récupère le caractère chiffrer ; si le caractère est
+        # inconnu il sera remplacé par |
 
     def __decrypt_char(self, char: str, passcode_char: str, dico: dict):
         """
