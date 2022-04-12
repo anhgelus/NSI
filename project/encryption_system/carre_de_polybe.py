@@ -20,6 +20,8 @@ class CarreDePolybe:
         crypted = ""
         text = text.upper()  # Transforme le texte en majuscule (ne supporte pas le majuscule/minuscule)
         for letter in text:
+            if letter == " ":
+                crypted += letter
             if letter in key:
                 line = key.index(letter) // 5 + 1  # récupère la ligne
                 col = key.index(letter) % 5 + 1  # récupère la colonne
@@ -31,7 +33,7 @@ class CarreDePolybe:
                 crypted += str(line) + str(col)
 
         print("Texte entrée : " + text)
-        print("Alphabet : " + self.__key_to_str(key))
+        print("Clef : " + self.__key_to_str(key))
         print("Résultat : " + crypted)
 
         return crypted
@@ -52,24 +54,32 @@ class CarreDePolybe:
         n = 0  # compteur de caractère
         char = ""  # chaîne temporaire
         chars = []  # liste des caractères
-        for c in text:
-            n += 1
-            char += c
-            if n == 2:  # Si on a 2 charactères
-                chars.append(char)  # On ajoute le résultat à la liste
+
+        for c in text:  # On réunit les deux chiffres entre eux
+            n += 1  # On incrément le nbr de caractère à chaque passage
+            char += c  # On ajoute le charactère à la chaîne temporaire
+            if char == " ":  # S'il s'agit d'un espace
+                chars.append(char)  # On ajoute l'espace à la liste
+                char = ""  # On reset la chaîne temporaire
+                n = 0  # On reset le compteur de caractère
+            elif n == 2:  # Si on a 2 charactères
+                chars.append(char)  # On ajoute la chaîne temporaire à la liste
                 char = ""  # On reset la chaîne temporaire
                 n = 0  # On reset le compteur de caractère
 
-        for i in chars:
-            cs = list(i)  # On divise le caractère actuel
-            ligne = int(cs[0])  # On récupère la première partie (ligne)
-            col = int(cs[1])  # On récupère la deuxième partie (colonne)
-            lettre = key[((ligne - 1) * 5 + col) - 1]  # On inverse le chiffrement et on récupère la lettre
-            decrypted += lettre
+        for i in chars:  # On déchiffre le duo de caractère ou l'espace
+            if i == " ":  # S'il s'agit d'un espace, on skip
+                decrypted += i
+            else:
+                cs = list(i)  # On divise le caractère actuel
+                ligne = int(cs[0])  # On récupère la première partie (ligne)
+                col = int(cs[1])  # On récupère la deuxième partie (colonne)
+                lettre = key[((ligne - 1) * 5 + col) - 1]  # On inverse le chiffrement et on récupère la lettre
+                decrypted += lettre
 
         print("Tous les J ont été transformés en I à cause de cette méthode de chiffrement\n")
         print("Texte entrée : " + text)
-        print("Alphabet : " + self.__key_to_str(key))
+        print("Clef : " + self.__key_to_str(key))
         print("Résultat : " + decrypted)
 
         return decrypted
