@@ -9,6 +9,11 @@ class ChiffreDeVigenere:
         :param passcode: Phrase qui permet de chiffrer
         :return: Message chiffré
         """
+        for i in passcode:
+            if i.isdigit():
+                print("Les chiffres ne sont pas utilisable avec le chiffre de Vigenère")
+                return None
+
         crypted = ""  # Résultat à retourner
 
         dico_down = self.__get_dico("down")  # Génère le dictionnaire pour les minuscules
@@ -31,8 +36,11 @@ class ChiffreDeVigenere:
 
             passcode_increment += 1  # On passe au caractère suivant
 
+        # On affiche le résultat
         print("Texte entrée : " + text)
         print("Passcode : " + passcode)
+        if "|" in crypted:
+            print("/!\\ Le caractère '|' indique que nous n'avons pas pu chiffrer un caractère /!\\")
         print("Résultat : " + crypted)
 
         return crypted
@@ -44,6 +52,11 @@ class ChiffreDeVigenere:
         :param passcode: Phrase avec laquel le message est chiffré
         :return: Message déchiffré
         """
+        for i in passcode:
+            if i.isdigit():
+                print("Les chiffres ne sont pas utilisable avec le chiffre de Vigenère")
+                return None
+
         decrypted = ""  # Résultat à retourner
 
         dico_down = self.__get_dico("down")  # Génère le dictionnaire pour les minuscules
@@ -66,8 +79,11 @@ class ChiffreDeVigenere:
 
             passcode_increment += 1  # On passe au caractère suivant
 
+        # On affiche le résultat
         print("Texte entrée : " + text)
         print("Passcode : " + passcode)
+        if "|" in decrypted:
+            print("/!\\ Le caractère '|' indique que nous n'avons pas pu chiffrer un caractère /!\\")
         print("Résultat : " + decrypted)
 
         return decrypted

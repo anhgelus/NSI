@@ -32,6 +32,7 @@ class CarreDePolybe:
                 col = key.index("I") % 5 + 1
                 crypted += str(line) + str(col)
 
+        # On affiche le résultat
         print("Texte entrée : " + text)
         print("Clef : " + self.__key_to_str(key))
         print("Résultat : " + crypted)
@@ -77,6 +78,7 @@ class CarreDePolybe:
                 lettre = key[((ligne - 1) * 5 + col) - 1]  # On inverse le chiffrement et on récupère la lettre
                 decrypted += lettre
 
+        # On affiche le résultat
         print("Tous les J ont été transformés en I à cause de cette méthode de chiffrement\n")
         print("Texte entrée : " + text)
         print("Clef : " + self.__key_to_str(key))

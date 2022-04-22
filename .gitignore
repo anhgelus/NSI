@@ -6,3 +6,9 @@
 project/encryption_system/__pycache__/
 
 project/__pycache__/
+
+*.odt
+
+*.odp
+
+*.odt#

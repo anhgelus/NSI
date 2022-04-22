@@ -11,10 +11,14 @@ class CodeDeCesar:
         """
         if decal < 0:
             print("Il n'est pas possible de chiffrer avec un chiffre négatif")
-            return
+            return None
+        elif decal > 25:
+            print("Il n'est pas possible de chiffer avec un chiffre supérieur à 25")
+            return None
 
         crypted = self.__crypt(text, decal)
 
+        # On affiche le résultat
         print("Texte entrée : " + text)
         print("Décalage : " + str(decal))
         print("Résultat : " + crypted)
@@ -29,11 +33,15 @@ class CodeDeCesar:
         :return: Message déchiffré
         """
         if decal < 0:
-            print("Il n'est pas possible de chiffrer avec un chiffre négatif")
-            return
+            print("Il n'est pas possible de déchiffrer avec un chiffre négatif")
+            return None
+        elif decal > 25:
+            print("Il n'est pas possible de chiffer avec un chiffre supérieur à 25")
+            return None
 
         decal_de = 26 - decal  # Inverse le décalage pour déchiffrer le message
 
+        # On affiche le résultat
         print("Texte entrée : " + text)
         print("Décalage : " + str(decal))
         print("Résultat : " + self.__crypt(text, decal_de))

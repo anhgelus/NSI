@@ -35,7 +35,12 @@ class Question:
         """
         validation_type = {"y": 1, "n": 0}
         while True:
-            answer = input("Confirmez-vous d'utiliser " + question + " ? (y/n) ")
+            try:
+                answer = input("Confirmez-vous d'utiliser " + question + " ? (y/n) ")
+            except KeyboardInterrupt as e:
+                exit(e)
+                return
+
             validation = validation_type.get(answer, "error")
 
             if validation != "error":
@@ -53,7 +58,11 @@ class Question:
         :return: réponse de l'utilisateur
         """
         while True:
-            answer = input(question)
+            try:
+                answer = input(question)
+            except KeyboardInterrupt as e:
+                exit(e)
+                return
 
             if reponses is None:
                 validation = answer
@@ -73,7 +82,7 @@ class Question:
             elif type_reponse is list:
                 try:
                     validation = reponses[int(answer)]
-                except:
+                except ValueError:
                     validation = "error"
             else:
                 validation = "error"

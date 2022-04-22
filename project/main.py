@@ -43,8 +43,12 @@ def main():
                 cesar = CodeDeCesar()  # Initialise la class CodeDeCesar
 
                 # Demande la phrase et le code pour chiffrer/déchiffer la phrase
-                crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
-                pass_code = int(input("Décalage "))
+                try:
+                    crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
+                    pass_code = int(input("Décalage "))
+                except KeyboardInterrupt as e:
+                    exit(e)
+                    return
 
                 # Vérifie la méthode à utiliser (chiffrement (1) ou déchiffrement (2))
                 if usage == usage_type.get(1):
@@ -58,7 +62,11 @@ def main():
             elif type_chiffrage == chiffrage_list[1]:
                 cesar = CodeDeCesar()  # Initialise la class CodeDeCesar
                 # Demande la phrase pour chiffrer/déchiffer la phrase
-                crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
+                try:
+                    crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
+                except KeyboardInterrupt as e:
+                    exit(e)
+                    return
 
                 # Vérifie la méthode à utiliser (chiffrement (1) ou déchiffrement (2))
                 if usage == usage_type.get(1):
@@ -73,10 +81,14 @@ def main():
                 vigenere = ChiffreDeVigenere()
 
                 # Demande la phrase et le code pour chiffrer/déchiffer la phrase
-                crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
-                passcode = input("Passcode ")
+                try:
+                    crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
+                    passcode = input("Passcode ")
+                except KeyboardInterrupt as e:
+                    exit(e)
+                    return
 
-                # Vérifie la méthode à utiliser (chiffrement (1) ou déchiffrement (2))
+                    # Vérifie la méthode à utiliser (chiffrement (1) ou déchiffrement (2))
                 if usage == usage_type.get(1):
                     # Chiffre le message avec le chiffre de vigenere
                     vigenere.encrypt(crypt, passcode)
@@ -85,11 +97,17 @@ def main():
                     vigenere.decrypt(crypt, passcode)
 
             elif type_chiffrage == chiffrage_list[4]:
+                print("/!\\ Dans le Carré de Polybe, le I = J /!\\")
                 polybe = CarreDePolybe()
 
                 # Demande la phrase et le code pour chiffrer/déchiffer la phrase
-                crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
-                alphabet = input("Alphabet ")
+                try:
+                    crypt = str(input("Phrase à " + str(usage) + " avec " + type_chiffrage + " "))
+                    alphabet = input("Alphabet ")
+                except KeyboardInterrupt as e:
+                    exit(e)
+                    return
+
                 if alphabet == "":
                     alphabet = None
 
